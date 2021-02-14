@@ -1,6 +1,6 @@
 \documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
-%% maxwidth is the original width if it is less than linewidth
-%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
 \def\maxwidth{ %
   \ifdim\Gin@nat@width>\linewidth
@@ -21,6 +21,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -122,6 +123,27 @@ Let's plot the data for some arbitrary moment in the game in Figure \ref{fig:plo
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{source}\hlstd{(}\hlkwd{sprintf}\hlstd{(}\hlstr{"%s/constants.R"}\hlstd{, code.dir))} \hlcom{# loads libraries and constants used throughout code}
+\end{alltt}
+\begin{verbatim}
+## Warning in install.packages :
+##   unable to access index for repository http://www.math.ntnu.no/inla/R/stable/src/contrib:
+##   cannot open URL 'http://www.math.ntnu.no/inla/R/stable/src/contrib/PACKAGES'
+## Warning in install.packages :
+##   package 'INLA' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+## Warning in install.packages :
+##   unable to access index for repository http://www.math.ntnu.no/inla/R/stable/bin/macosx/contrib/4.0:
+##   cannot open URL 'http://www.math.ntnu.no/inla/R/stable/bin/macosx/contrib/4.0/PACKAGES'
+## 
+## The downloaded binary packages are in
+## 	/var/folders/zl/8xhj8rts3yxc506fzd8yw9th0000gp/T//Rtmpn82Yzg/downloaded_packages
+\end{verbatim}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in library(INLA): there is no package called 'INLA'}}\begin{alltt}
 \hlkwd{source}\hlstd{(}\hlkwd{sprintf}\hlstd{(}\hlstr{"%s/graphics.R"}\hlstd{, code.dir))}  \hlcom{# graphics/plotting functions}
 \hlkwd{par}\hlstd{(}\hlkwc{mar}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{0}\hlstd{,} \hlnum{0}\hlstd{,} \hlnum{0}\hlstd{))}
 \hlkwd{data.plotter}\hlstd{(dat,} \hlnum{1800}\hlstd{)}
@@ -308,16 +330,9 @@ Similarly, let's load the basis functions that are used in representing the spat
 \hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlnum{10}\hlstd{)}
   \hlkwd{spatialPlot1}\hlstd{(take.basis[i, ],} \hlkwc{legend}\hlstd{=F)}
 \end{alltt}
-\end{kframe}\begin{figure}[H]
-
-{\centering \includegraphics[width=\maxwidth]{figure/shot_bases-1} 
-
-}
-
-\caption[Shot-taking spatial bases]{Shot-taking spatial bases; this plot is the same as Figure 6 of the paper (though the ordering is different).}\label{fig:shot_bases}
-\end{figure}
 
 
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in which(mesh\$loc[, 1] >= 0 \& mesh\$loc[, 1] <= 47 \& mesh\$loc[, 2] >= : object 'mesh' not found}}\end{kframe}
 \end{knitrout}
 
 \section{Loading parameters and model estimates}
@@ -334,8 +349,8 @@ Here, we will load and illustrate the results of the multiresolution transition 
 \hlcom{# x component of LeBron James' micro model during ball possession}
 \hlkwd{xtable}\hlstd{(with.ball}\hlopt{$}\hlstd{io.x}\hlopt{$}\hlstd{summary.fixed[,} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Tue Dec  1 02:11:09 2015
+\end{kframe}% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Sun Jan 31 15:13:35 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrr}
@@ -355,18 +370,15 @@ dif & 0.98 & 0.00 & 0.98 & 0.98 & 0.98 \\
 \begin{alltt}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{),} \hlkwc{mar}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{0}\hlstd{,}\hlnum{0}\hlstd{,}\hlnum{0}\hlstd{))}
 \hlkwd{vectorPlot}\hlstd{(with.ball)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in inla.mesh.projector(mesh, dims = c(40, 40)): could not find function "{}inla.mesh.projector"{}}}\begin{alltt}
 \hlkwd{vectorPlot}\hlstd{(without.ball)}
 \end{alltt}
-\end{kframe}\begin{figure}[H]
-
-{\centering \includegraphics[width=.5\linewidth]{figure/micro_plots-1} 
-
-}
-
-\caption[Plots of acceleration effect for LeBron James' offensive microtransition model]{Plots of acceleration effect for LeBron James' offensive microtransition model.}\label{fig:micro_plots}
-\end{figure}
 
 
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in inla.mesh.projector(mesh, dims = c(40, 40)): could not find function "{}inla.mesh.projector"{}}}\end{kframe}
 \end{knitrout}
 
 The defensive microtransition model is less complicated, and we can fit it very quickly. The code below estimates the same model parameters for all players on defense:
@@ -379,8 +391,8 @@ The defensive microtransition model is less complicated, and we can fit it very 
 \hlcom{# coefficients are a_x, c_x, and b_x from Equation 6 in paper}
 \hlkwd{xtable}\hlstd{(}\hlkwd{summary}\hlstd{(def.micro}\hlopt{$}\hlstd{mod.x)}\hlopt{$}\hlstd{coef[,} \hlnum{1}\hlopt{:}\hlnum{3}\hlstd{])}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Tue Dec  1 02:11:16 2015
+\end{kframe}% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Sun Jan 31 15:13:39 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrr}
@@ -408,8 +420,8 @@ We have six macrotransition entry models (from Section 3.2 of the paper). Each i
 \hlcom{# coefficients for time-varying covariates in shot-taking hazard model}
 \hlkwd{xtable}\hlstd{(inla.out}\hlopt{$}\hlstd{summary.fixed[,} \hlnum{1}\hlopt{:}\hlnum{2}\hlstd{])}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Tue Dec  1 02:11:24 2015
+\end{kframe}% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Sun Jan 31 15:13:47 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrr}
@@ -444,8 +456,8 @@ We have six macrotransition entry models (from Section 3.2 of the paper). Each i
 \hlstd{this.player} \hlkwb{<-} \hlkwd{grep}\hlstd{(}\hlstr{"Bosh"}\hlstd{, players}\hlopt{$}\hlstd{lastname)}
 \hlkwd{xtable}\hlstd{(inla.out}\hlopt{$}\hlstd{summary.random}\hlopt{$}\hlstd{p.dribble[this.player,} \hlnum{2}\hlopt{:}\hlnum{6}\hlstd{])}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Tue Dec  1 02:11:24 2015
+\end{kframe}% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Sun Jan 31 15:13:47 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrr}
@@ -468,8 +480,8 @@ However, the random effects on the spatial basis coefficients are stacked in a $
 \hlcom{# inference for Chris Bosh's intercept and first basis coefficient}
 \hlkwd{xtable}\hlstd{(inla.out}\hlopt{$}\hlstd{summary.random}\hlopt{$}\hlstd{p.int[this.player} \hlopt{+} \hlnum{0}\hlopt{:}\hlnum{1}\hlstd{,} \hlnum{2}\hlopt{:}\hlnum{6}\hlstd{])}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Tue Dec  1 02:11:24 2015
+\end{kframe}% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Sun Jan 31 15:13:47 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrr}
@@ -484,8 +496,8 @@ However, the random effects on the spatial basis coefficients are stacked in a $
 \begin{kframe}\begin{alltt}
 \hlkwd{xtable}\hlstd{(inla.out}\hlopt{$}\hlstd{summary.random}\hlopt{$}\hlstd{p.b1[this.player} \hlopt{+} \hlnum{0}\hlopt{:}\hlnum{1}\hlstd{,} \hlnum{2}\hlopt{:}\hlnum{6}\hlstd{])} \hlcom{# identical}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Tue Dec  1 02:11:24 2015
+\end{kframe}% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Sun Jan 31 15:13:47 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrr}
@@ -521,7 +533,9 @@ The following code rearranges the output into a single matrix, with each row giv
   \hlstd{player.params[pl, ]} \hlkwb{<-} \hlstd{y.fix} \hlopt{+} \hlstd{y.rand}
 \hlstd{\}}
 \end{alltt}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in `[.data.frame`(inla.out\$summary.random\$p.b1, pl + n * (1:n.basis), : object 'n.basis' not found}}\end{kframe}
 \end{knitrout}
 
 For Chris Bosh, for instance, we can view his parameter estimates and see where each ranks relative to the rest of the league:
@@ -533,28 +547,28 @@ For Chris Bosh, for instance, we can view his parameter estimates and see where 
 \hlstd{ranks} \hlkwb{<-} \hlkwd{apply}\hlstd{(player.params,} \hlnum{2}\hlstd{,} \hlkwa{function}\hlstd{(}\hlkwc{col}\hlstd{)} \hlkwd{rank}\hlstd{(col)[this.player])} \hlcom{# increasing order}
 \hlkwd{xtable}\hlstd{(}\hlkwd{data.frame}\hlstd{(param.names, values, ranks),} \hlkwc{digits}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{0}\hlstd{,}\hlnum{2}\hlstd{,}\hlnum{0}\hlstd{))}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Tue Dec  1 02:11:24 2015
+\end{kframe}% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Sun Jan 31 15:13:47 2021
 \begin{table}[ht]
 \centering
-\begin{tabular}{rlrr}
+\begin{tabular}{rllr}
   \hline
  & param.names & values & ranks \\ 
   \hline
-1 & (Intercept) & -3.32 & 218 \\ 
-  2 & dribble & -0.00 & 361 \\ 
-  3 & ndef & -0.02 & 251 \\ 
-  4 & ball.lastsec & 0.07 & 234 \\ 
-  5 & b1 & 0.21 & 57 \\ 
-  6 & b2 & -2.32 & 110 \\ 
-  7 & b3 & 0.10 & 322 \\ 
-  8 & b4 & 0.49 & 185 \\ 
-  9 & b5 & -5.02 & 439 \\ 
-  10 & b6 & -2.17 & 146 \\ 
-  11 & b7 & -2.47 & 335 \\ 
-  12 & b8 & -1.80 & 245 \\ 
-  13 & b9 & -3.60 & 231 \\ 
-  14 & b10 & -2.00 & 97 \\ 
+1 & (Intercept) &  & 237 \\ 
+  2 & dribble &  & 237 \\ 
+  3 & ndef &  & 237 \\ 
+  4 & ball.lastsec &  & 237 \\ 
+  5 & b1 &  & 237 \\ 
+  6 & b2 &  & 237 \\ 
+  7 & b3 &  & 237 \\ 
+  8 & b4 &  & 237 \\ 
+  9 & b5 &  & 237 \\ 
+  10 & b6 &  & 237 \\ 
+  11 & b7 &  & 237 \\ 
+  12 & b8 &  & 237 \\ 
+  13 & b9 &  & 237 \\ 
+  14 & b10 &  & 237 \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -569,25 +583,33 @@ Analagous to Figure 5 in the paper, we can plot players' spatial effect surfaces
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{vars} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{"b"}\hlstd{,} \hlkwd{seq}\hlstd{(n.basis))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in seq(n.basis): object 'n.basis' not found}}\begin{alltt}
 \hlstd{spat.fixed} \hlkwb{<-} \hlkwd{as.numeric}\hlstd{(inla.out}\hlopt{$}\hlstd{summary.fixed[}\hlstr{"(Intercept)"}\hlstd{,} \hlstr{"mean"}\hlstd{]} \hlopt{+}
                            \hlkwd{t}\hlstd{(take.basis)} \hlopt{%*%} \hlstd{inla.out}\hlopt{$}\hlstd{summary.fixed[vars,} \hlstr{"mean"}\hlstd{])}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in t(take.basis): object 'take.basis' not found}}\begin{alltt}
 \hlstd{spat.random} \hlkwb{<-} \hlkwd{as.numeric}\hlstd{(inla.out}\hlopt{$}\hlstd{summary.random}\hlopt{$}\hlstd{p.int[this.player,} \hlstr{"mean"}\hlstd{]} \hlopt{+}
                             \hlkwd{t}\hlstd{(take.basis)} \hlopt{%*%} \hlstd{inla.out}\hlopt{$}\hlstd{summary.random}\hlopt{$}\hlstd{p.int[this.player} \hlopt{+} \hlstd{n} \hlopt{*} \hlstd{(}\hlnum{1}\hlopt{:}\hlstd{n.basis),} \hlstr{"mean"}\hlstd{])}
+\end{alltt}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in t(take.basis): object 'take.basis' not found}}\begin{alltt}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{),} \hlkwc{mar}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{4}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{6}\hlstd{))}
 \hlkwd{spatialPlot1}\hlstd{(spat.fixed} \hlopt{+} \hlstd{spat.random,} \hlkwc{axis.args}\hlstd{=}\hlkwd{list}\hlstd{(}\hlkwc{cex.axis}\hlstd{=}\hlnum{0.75}\hlstd{))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in which(mesh\$loc[, 1] >= 0 \& mesh\$loc[, 1] <= 47 \& mesh\$loc[, 2] >= : object 'mesh' not found}}\begin{alltt}
 \hlkwd{spatialPlot1}\hlstd{(spat.random,} \hlkwc{axis.args}\hlstd{=}\hlkwd{list}\hlstd{(}\hlkwc{cex.axis}\hlstd{=}\hlnum{0.75}\hlstd{))}
 \end{alltt}
-\end{kframe}\begin{figure}[H]
-
-{\centering \includegraphics[width=\maxwidth]{figure/bosh_shot_hazard-1} 
-
-}
-
-\caption[Shot-taking spatial effect for Chris Bosh (left)]{Shot-taking spatial effect for Chris Bosh (left). The difference in this surface relative to the rest of the league is illustrated on the right.}\label{fig:bosh_shot_hazard}
-\end{figure}
 
 
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in which(mesh\$loc[, 1] >= 0 \& mesh\$loc[, 1] <= 47 \& mesh\$loc[, 2] >= : object 'mesh' not found}}\end{kframe}
 \end{knitrout}
 
 To view the spatial effect on a passing hazard (for instance, to player 1---the point guard), we would do:
@@ -597,26 +619,30 @@ To view the spatial effect on a passing hazard (for instance, to player 1---the 
 \begin{alltt}
 \hlkwd{load}\hlstd{(}\hlkwd{sprintf}\hlstd{(}\hlstr{"%s/INLA_PASS1.Rdata"}\hlstd{, data.dir))}
 \hlstd{vars} \hlkwb{<-} \hlkwd{paste0}\hlstd{(}\hlstr{"b"}\hlstd{,} \hlkwd{seq}\hlstd{(n.basis))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in seq(n.basis): object 'n.basis' not found}}\begin{alltt}
 \hlstd{spat.fixed} \hlkwb{<-} \hlkwd{as.numeric}\hlstd{(inla.out}\hlopt{$}\hlstd{summary.fixed[}\hlstr{"(Intercept)"}\hlstd{,} \hlstr{"mean"}\hlstd{]} \hlopt{+}
                            \hlkwd{t}\hlstd{(pass1.basis)} \hlopt{%*%} \hlstd{inla.out}\hlopt{$}\hlstd{summary.fixed[vars,} \hlstr{"mean"}\hlstd{])}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in t(pass1.basis): object 'pass1.basis' not found}}\begin{alltt}
 \hlstd{spat.random} \hlkwb{<-} \hlkwd{as.numeric}\hlstd{(inla.out}\hlopt{$}\hlstd{summary.random}\hlopt{$}\hlstd{p.int[this.player,} \hlstr{"mean"}\hlstd{]} \hlopt{+}
                             \hlkwd{t}\hlstd{(pass1.basis)} \hlopt{%*%} \hlstd{inla.out}\hlopt{$}\hlstd{summary.random}\hlopt{$}\hlstd{p.int[this.player} \hlopt{+} \hlstd{n} \hlopt{*} \hlstd{(}\hlnum{1}\hlopt{:}\hlstd{n.basis),} \hlstr{"mean"}\hlstd{])}
+\end{alltt}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in t(pass1.basis): object 'pass1.basis' not found}}\begin{alltt}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{),} \hlkwc{mar}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{4}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{6}\hlstd{))}
 \hlkwd{spatialPlot2}\hlstd{(}\hlkwd{head}\hlstd{(spat.fixed} \hlopt{+} \hlstd{spat.random, mesh}\hlopt{$}\hlstd{n),}
              \hlkwd{tail}\hlstd{(spat.fixed} \hlopt{+} \hlstd{spat.random, mesh}\hlopt{$}\hlstd{n),}
                   \hlkwc{axis.args}\hlstd{=}\hlkwd{list}\hlstd{(}\hlkwc{cex.axis}\hlstd{=}\hlnum{0.75}\hlstd{))}
 \end{alltt}
-\end{kframe}\begin{figure}[H]
-
-{\centering \includegraphics[width=\maxwidth]{figure/bosh_pass1_hazard-1} 
-
-}
-
-\caption[Spatial effect for passes from Chris Bosh to the point guard]{Spatial effect for passes from Chris Bosh to the point guard. The effect of Bosh's location is on the left, and the effect of the PG's location is on the right.}\label{fig:bosh_pass1_hazard}
-\end{figure}
 
 
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in which(mesh\$loc[, 1] >= 0 \& mesh\$loc[, 1] <= 47 \& mesh\$loc[, 2] >= : object 'mesh' not found}}\end{kframe}
 \end{knitrout}
 
 Lastly, it's useful to check the hyperparameter estimates to make sure they are sensible. The hyperparameters for the macrotransition entry models (and shot probability model) and log precision terms for the CAR model, described in Sections 4.1 and 4.2 of the paper. In this implementation, we've fixed the hyperparameters for all spatial basis loadings to be the same within each macrotransition entry model.
@@ -672,9 +698,15 @@ Given estimates of our parameters, EPV is calculated using Monte Carlo. The gene
 \begin{alltt}
 \hlkwd{source}\hlstd{(}\hlkwd{sprintf}\hlstd{(}\hlstr{"%s/parameters.R"}\hlstd{, code.dir))}
 \hlstd{hyper} \hlkwb{<-} \hlkwd{getHyperParams}\hlstd{(tdat)} \hlcom{# makes sure all parameter inference is loaded}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in getHyperParams(tdat): object 'inla.names' not found}}\begin{alltt}
 \hlstd{ev.out} \hlkwb{<-} \hlkwd{evLineups}\hlstd{(tdat)} \hlcom{# coarsened state EVs for each offensive lineup in tdat}
 \end{alltt}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in evLineups(tdat): object 'state\_nms' not found}}\end{kframe}
 \end{knitrout}
 
 % change "teammates.all" to "lineups"!
@@ -684,18 +716,20 @@ In \texttt{ev.out}, \texttt{teammates.all} is a matrix of 5-man lineups that app
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{lineup.ids} \hlkwb{<-} \hlstd{ev.out}\hlopt{$}\hlstd{teammates.all[}\hlnum{2}\hlstd{, ]}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'ev.out' not found}}\begin{alltt}
 \hlstd{this.lineup} \hlkwb{<-} \hlstd{players[}\hlkwd{match}\hlstd{(lineup.ids, players}\hlopt{$}\hlstd{player_id), ]}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in match(lineup.ids, players\$player\_id): object 'lineup.ids' not found}}\begin{alltt}
 \hlstd{this.lineup[,} \hlnum{2}\hlopt{:}\hlnum{4}\hlstd{]}
 \end{alltt}
-\begin{verbatim}
-##     firstname lastname       position
-## 243     Mario Chalmers    Point-Guard
-## 238    Dwyane     Wade          Guard
-## 236    LeBron    James        Forward
-## 240    Udonis   Haslem  Power-Forward
-## 237     Chris     Bosh Forward-Center
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'this.lineup' not found}}\end{kframe}
 \end{knitrout}
 
 For each 5-man lineup, there are $5 \times 2 \text{ (defended or not) } \times 7 \text{ (court regions) } = 70$ coarsened state expected values. To check these for LeBron James' possession states, for instance,  we'd do:
@@ -704,34 +738,15 @@ For each 5-man lineup, there are $5 \times 2 \text{ (defended or not) } \times 7
 \begin{kframe}
 \begin{alltt}
 \hlstd{lineup.states} \hlkwb{<-} \hlkwd{paste}\hlstd{(}\hlkwd{rep}\hlstd{(this.lineup}\hlopt{$}\hlstd{lastname,} \hlkwc{each}\hlstd{=}\hlnum{14}\hlstd{), state_nms)} \hlcom{# state names}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in paste(rep(this.lineup\$lastname, each = 14), state\_nms): object 'this.lineup' not found}}\begin{alltt}
 \hlkwd{xtable}\hlstd{(}\hlkwd{data.frame}\hlstd{(}\hlkwc{state}\hlstd{=lineup.states,} \hlkwc{EV}\hlstd{=ev.out}\hlopt{$}\hlstd{evs[[}\hlnum{2}\hlstd{]])[}\hlkwd{grep}\hlstd{(}\hlstr{"James"}\hlstd{, lineup.states), ],} \hlkwc{digits}\hlstd{=}\hlnum{2}\hlstd{)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Tue Dec  1 02:11:26 2015
-\begin{table}[ht]
-\centering
-\begin{tabular}{rlr}
-  \hline
- & state & EV \\ 
-  \hline
-29 & James behind-TRUE & 1.06 \\ 
-  30 & James per-TRUE & 1.03 \\ 
-  31 & James rest-TRUE & 1.42 \\ 
-  32 & James key-TRUE & 1.24 \\ 
-  33 & James cor3-TRUE & 1.09 \\ 
-  34 & James cen3-TRUE & 1.02 \\ 
-  35 & James other-TRUE & 0.99 \\ 
-  36 & James behind-FALSE & 1.05 \\ 
-  37 & James per-FALSE & 1.03 \\ 
-  38 & James rest-FALSE & 1.60 \\ 
-  39 & James key-FALSE & 1.34 \\ 
-  40 & James cor3-FALSE & 1.21 \\ 
-  41 & James cen3-FALSE & 1.03 \\ 
-  42 & James other-FALSE & 1.00 \\ 
-   \hline
-\end{tabular}
-\end{table}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in data.frame(state = lineup.states, EV = ev.out\$evs[[2]]): object 'lineup.states' not found}}\end{kframe}
 \end{footnotesize}
 
 These results seem pretty sensible, as, for instance, EVs are uniformly higher for uncontested states, with the difference especially great within the restricted area (1.60 versus 1.42) and corner 3 (1.21 versus 1.09). Note that with different teammates, we would see slightly different EVs for these states.
@@ -883,29 +898,25 @@ The derived metrics presented in the paper, EPV-Added (EPVA) and shot satisfacti
 \hlstd{id} \hlkwb{<-} \hlstd{players}\hlopt{$}\hlstd{player_id[}\hlkwd{grep}\hlstd{(}\hlstr{"LeBron"}\hlstd{, players}\hlopt{$}\hlstd{firstname)]}
 \hlkwd{sum}\hlstd{(}\hlkwd{EPVA}\hlstd{(tdat, id))}       \hlcom{# sums EPV added on each touch}
 \end{alltt}
-\begin{verbatim}
-## [1] 8.336796
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in getHyperParams(id.dat): object 'inla.names' not found}}\begin{alltt}
 \hlkwd{mean}\hlstd{(}\hlkwd{shotSatis}\hlstd{(tdat, id))} \hlcom{# averages shot satisfaction of each touch}
 \end{alltt}
-\begin{verbatim}
-## [1] 0.2229599
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in getHyperParams(id.dat): object 'inla.names' not found}}\begin{alltt}
 \hlstd{id} \hlkwb{<-} \hlstd{players}\hlopt{$}\hlstd{player_id[}\hlkwd{grep}\hlstd{(}\hlstr{"Deron"}\hlstd{, players}\hlopt{$}\hlstd{firstname)]} \hlcom{# Deron Williams}
 \hlkwd{sum}\hlstd{(}\hlkwd{EPVA}\hlstd{(tdat, id))}       \hlcom{# sums EPV added on each touch}
 \end{alltt}
-\begin{verbatim}
-## [1] 0.774197
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in getHyperParams(id.dat): object 'inla.names' not found}}\begin{alltt}
 \hlkwd{mean}\hlstd{(}\hlkwd{shotSatis}\hlstd{(tdat, id))} \hlcom{# averages shot satisfaction of each touch}
 \end{alltt}
-\begin{verbatim}
-## [1] 0.1002303
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in getHyperParams(id.dat): object 'inla.names' not found}}\end{kframe}
 \end{knitrout}
 
 \section{Appendix}
